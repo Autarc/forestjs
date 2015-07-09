@@ -35,8 +35,9 @@ For a concrete example checkout out the [browser][3] or [node][4] demo. Be aware
 
 [1]: https://github.com/karpathy/forestjs
 [2]: https://github.com/karpathy
-[3]: https://github.com/autarc/forestjs/example/server/demo.js
-[4]: https://github.io/autarc/forestjs/example/client/
+[3]: https://github.com/Autarc/forestjs/blob/master/example/server/demo.js
+[4]: http://autarc.github.io/forestjs/example/client/
+
 
 ________________________________________________________________________________________________
 
