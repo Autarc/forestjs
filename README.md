@@ -1,3 +1,45 @@
+forestjs
+========
+
+A Random Forest implementation for JavaScript supporting distributed computation.
+
+This is a slightly modified version of [forestjs][1] by [karpathy][2], now available via npm and
+an extension to use CrowdProcess to computate data at scale.
+
+```js
+npm install forestjs
+```
+
+## Usage
+
+```js
+import {RandomForest} from 'forestjs'
+
+var forest = new RandomForest()
+
+var data = [
+  [0,0],
+  [1,0],
+  [1,1]
+];
+
+var labels = ['a', 'b', 'a'];
+
+forest.trainCRP(data, labels, { email: '<MAIL>', password: '<PASSWORD>' }).on('end', function(){
+  console.log(forest);
+})
+```
+
+For a concrete example checkout out the [browser][3] or [node][4] demo. Be aware that the browser demo does not care about security and simply uses the provided credentials directly (E-Mail + Password or Token).
+
+
+[1]: https://github.com/karpathy/forestjs
+[2]: https://github.com/karpathy
+[3]: https://github.com/autarc/forestjs/example/server/demo.js
+[4]: https://github.io/autarc/forestjs/example/client/
+
+________________________________________________________________________________________________
+
 # forestjs
 Andrej Karpathy
 July 2012
@@ -18,7 +60,7 @@ The simplest use case:
 <script>
 forest = new forestjs.RandomForest();
 // data is 2D array of size NxD. Labels is 1D array of length D
-forest.train(data, labels); 
+forest.train(data, labels);
 // testInstance is 1D array of length D. Returns probability
 labelProbability = forest.predictOne(testInstance);
 // testData is 2D array of size MxD. Returns array of probabilities of length M
@@ -30,23 +72,23 @@ The library supports arbitrary weak learners. Currently implemented are a decisi
 
 ```javascript
 options.trainFun = function(data, labels, ix, options) {
-  
+
   // create some decision rule based on data and labels.
   // Only use data at indeces given in ix. Ignore the rest of the data.
   // this is done for efficiency.
-  
+
   // save parameters that describe your model
   model.parameter1= p1;
   model.parameter2= p2;
   return model;
-  
+
 }
 options.testFun = function(inst, model) {
-  
+
   // use model.parameter1 and model.parameter2 to return a 1 or -1 for
   // example instance inst. This determines if it will be passed down
   // left or right in the tree.
-  
+
   return inst[0] > model.parameter1 ? 1 : -1; // silly example
 }
 
