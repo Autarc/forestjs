@@ -1,0 +1,50 @@
+<html>
+<head>
+  <title>svmjs Decision Trees in Javascript: demo - Demo Forest</title>
+  <link type="text/css" href="./vendor/jqueryui/css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="Stylesheet" />
+  <link type="text/css" href="./style.css" rel="Stylesheet" />
+</head>
+<body>
+
+<div style="position: absolute; top: 10px; left: 30px;">
+<b>Also check out same GUI<br /> demo with SVMs <a href="http://cs.stanford.edu/~karpathy/svmjs/demo/">here.</a></b><br /><br />
+<b>Also check out same GUI<br /> demo with Neural Networks <a href="http://cs.stanford.edu/~karpathy/svmjs/demo/demonn.html">here.</a></b>
+</div>
+
+<div id="dec">
+<br /><h1>Random Forest demo in Javascript</h1>
+<p>
+Find code on <a href="https://github.com/karpathy/forestjs">Github</a> <br />
+Find me on Twitter <a href="https://twitter.com/karpathy">@karpathy</a>
+</p>
+</div>
+
+<p>
+<b>mouse click</b>: add red data point<br />
+<b>shift + mouse click</b>: add green data point<br />
+<b>'r'</b>: retrain<br />
+</p>
+
+<canvas id="NPGcanvas" width="500" height="500">Browser not supported for Canvas. Get a real browser.</canvas><br /><br />
+
+<div id="optsdiv">
+<div style="width:400px; margin-left: 10px;"><div id="slider1"></div><br/><span id="treesreport">number of trees = 100</span> (set this high for smoother and more regularized final prediction. Higher = always better, but slower.)</div>
+<div style="width:400px; margin-right: 10px;"><div id="slider2"></div><br/><span id="depthreport">max depth = 4</span> (depth of each tree in the forest. Set this higher when more complicated decision boundaries are needed (but runs exponentially slower and can be more prone to overfitting if not enough trees). Usually if you can afford many trees and resources you want to set this higher.)</div>
+<div style="width:400px; margin-right: 10px;"><div id="slider3"></div><br/><span id="triesreport">hypotheses / node = 10</span> (number of random hypotheses considered at each node during training. Setting this too high puts you in danger of overfitting your data because nodes in the forest lose variety.)</div>
+<br />
+<button type="button" onclick="options.type = 1-options.type; retrain();">Toggle type: 1D or 2D decisions.</button>
+<button type="button" onclick="drawSoft= !drawSoft; dirty= true;">Toggle drawing: hard or soft assignment.</button>
+
+<br />
+<p>A bit of explanation: Random forests are a collection of independent trees. Each tree is made up of nodes arranged in tree structure. Every node receives data from the top, and splits it to its 2 children based on some very simple decision (such as if x-coordinate > 3). To get the decision, during training a few random splitting rules are generated at each node and the "best" one is kept.</p>
+
+</div>
+
+<script src="./vendor/jqueryui/js/jquery-1.7.2.min.js"></script>
+<script src="./vendor/jqueryui/js/jquery-ui-1.8.21.custom.min.js"></script>
+<script src="./vendor/npg_include/npgmain.js"></script>
+<script src="../../dist/forestjs.browser.js"></script>
+<script src="./main.js"></script>
+
+</body>
+</html>
